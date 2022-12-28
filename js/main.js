@@ -1,35 +1,44 @@
-
-function megadulce(){
     
 
-alert("Bienvenido a Mega Dulce")
-
+ function MEGADULCE() {
     
+ 
+alert("Bienvenido a Mega Dulce")    
+    const megadulce =[];
     do {
     conti = prompt("Escriba Ok para comenzar su compra. Ten en cuenta que si actualiza la pagina comenzara todo desde el incio").toLocaleLowerCase();  
     } while ((conti != "ok"));
     
-    do {
-        EleccionPostres = prompt("Eliga los siguientes Postres: Torta ").toLocaleLowerCase();
-    } while ((EleccionPostres != "torta") && (EleccionPostres != "tortas"))
 
+            seccion = confirm("Bienvenido a nuestro seccion de Dulces. Por el momento tenemos disponible la venta de Tortas")
             let PrecioTortas = 100;
-            let CantiTortas = 1;
+            let CantiTortas = 0;
             conti = alert("cada torta cuesta $ "+ PrecioTortas);
-            CantiTortas = prompt("Escriba cuantas torta desea llevar")
-            alert("su total es de $ "+ PrecioTortas * CantiTortas)
-
+            CantiTortas = prompt("Escriba cuantas torta desea llevar(Limite 50 Unidades)") 
+            
+            const ResultadoConPrecioCantidad = PrecioTortas * CantiTortas;
+            alert("su total es de $ "+ ResultadoConPrecioCantidad);
             //Precio de Envio
+    
+            let nombre__nombre = prompt("Escriba su Nombre")
+            let Direccion__direccion = prompt("Escriba su dirrecion") 
             const PrecioCapital = 50;
             const PrecioZonaNorte = 40;
             const PrecioZonaSur = 90;
-            const ResultadoConPrecioCantidad = PrecioTortas * CantiTortas;
+            
+class Person {
+    constructor(name, Direccion,Total, TotalFinal,pago) {
+        this.name = name;
+        this.Direccion = Direccion;
+        this.Total = Total;
+        this.TotalFinal = TotalFinal;
+        this.pago = pago;
 
-            let nombre = prompt("Escriba su Nombre")
-            let Direccion = prompt("Escriba su dirrecion")
-                
-                
 
+    }
+}
+megadulce.push(Person)
+                
             function Localidades () {
                 
                 do {
@@ -37,196 +46,142 @@ alert("Bienvenido a Mega Dulce")
                } while ((Localidades != "capital") && (Localidades != "zona norte") && (Localidades != "zona sur"));
 
             
-            }
-        
+            }   
             function MetodoPago(Total, Precio ){
-                    do{ Pago = prompt("Desea pagar con Efectivo o Tarjeta ?").toLocaleLowerCase()}
-                    while ((Pago != "efectivo") && (Pago != "tarjeta")){}
+                    do{ Pago__pago = prompt("Desea pagar con Efectivo o Tarjeta ?").toLocaleLowerCase()}
+                    while ((Pago__pago != "efectivo") && (Pago__pago != "tarjeta")){}
     
-                   if(Pago == "efectivo"){
+                   if(Pago__pago == "efectivo"){
                     alert("Usted esta pagando en efectivo")
                         alert("Su pago es de $" + Total)
-                        let si = prompt("Escriba si para Finalizar el Pago").toLocaleLowerCase();  
-                        while (si != "si"){};
-
-                        alert(nombre + " Su pedido sera va enviado a " + Direccion + " Su total es de $" + (ResultadoConPrecioCantidad + Precio) + " Gracias por Elegirnos") 
+                         si = confirm("Confirme para aceptar el pago")
+                        const Datos = new Person(nombre__nombre, Direccion__direccion, Pago__pago,(ResultadoConPrecioCantidad + Precio), Pago__pago );
+                        console.log(Datos)
+                        
+                        alert(nombre__nombre + " Su pedido sera enviado a " + Direccion__direccion + " Su total es de $" + (ResultadoConPrecioCantidad + Precio) + " Gracias por Elegirnos") 
                         alert("Su compra a sido enviada")
 
+
                     }
-                   if(Pago == "tarjeta"){
+                   if(Pago__pago == "tarjeta"){
                     alert("Usted esta pagando con tarjeta")
                     alert("Su pago es de $"+ Total)
                     let Cuota = prompt("Con Cuantas cuotas desea abonar")
                     let PrecioDivido = Total / Cuota;
                     alert("Usted estara pagando cada cuota de $" + PrecioDivido)
-                    let si = prompt("Escriba si para Finalizar el Pago").toLocaleLowerCase();  
-                        while(si != "si"){};
+                    si = confirm("Confirme para aceptar el pago")
+                        const Datos = new Person(nombre__nombre, Direccion__direccion, Pago__pago,PrecioDivido, Pago__pago );
+                        console.log(Datos)
 
-                        alert(nombre + " Su pedido sera va enviado a " + Direccion + " Su total es de $" +  PrecioDivido + " Gracias por Elegirnos") 
+                        alert(nombre__nombre + " Su pedido sera enviado a " + Direccion__direccion + " Su total es de $" +  PrecioDivido + " Gracias por Elegirnos") 
                         alert("Su compra a sido enviada")
 
                    }
                 
             }
+            function CostosDeMenoresCantidades() {
+                switch (Localidades) {
+                    case "capital":
+                        alert("El costo del envio es de $" + PrecioCapital)
+                        alert("Su total es de $" +(ResultadoConPrecioCantidad + PrecioCapital));
+                        MetodoPago(ResultadoConPrecioCantidad + PrecioCapital, PrecioCapital);
+                        break;
 
-                // Proceso de Compra
+                        case "zona norte":
+                        alert("El costo del envio es de $" + PrecioZonaNorte);
+                        alert("Su total es de $" + (ResultadoConPrecioCantidad + PrecioZonaNorte));
+                        MetodoPago(ResultadoConPrecioCantidad + PrecioZonaNorte, PrecioZonaNorte);
+                            break;
+                            case "zona sur":
+                                alert("El costo del envio es de $" + PrecioZonaSur)
+                                alert("Su total es de $" + (ResultadoConPrecioCantidad + PrecioZonaSur))
+                                MetodoPago(ResultadoConPrecioCantidad + PrecioZonaSur, PrecioZonaSur);
+
+                            break;
+                    default:
+                    console.log("Su localidad no se encuentra disponible aun")
+                        break;
+                }
+                
+            }
+            function CostosDeMayoresCantidades(data) {
+
+            switch (Localidades) {
+            case "capital":
+            
+            let PreciototalCapital = data + PrecioCapital; // PrecioCapital valor de envio
+            alert("El costo del envio es de $" + PrecioCapital)
+            alert("Su total es de $" + PreciototalCapital)
+            MetodoPago(PreciototalCapital, PrecioCapital);
+            
+            break;
+            case "zona norte":
+            let PreciototalZonaNorte = data + PrecioZonaNorte; 
+            alert("El costo del envio es de $" + PrecioZonaNorte)
+            alert("Su total es de " + PreciototalZonaNorte )
+            MetodoPago(PreciototalZonaNorte, PrecioZonaNorte);
+            break;
+
+            case"zona sur":
+            let PreciototalZonaSur = data + PrecioZonaSur; 
+            alert("El costo del envio es de $" + PrecioZonaSur)
+            alert("Su total es de $" + PreciototalZonaSur)
+            MetodoPago(PreciototalZonaSur, PrecioZonaSur);
+            break;
+
+
+            default:
+            break;
+    }
+}
+            // Proceso de Compra
             if (CantiTortas <= 5){ 
                 alert("Su Seleccion del pedido ha sido un exito")
                 Localidades();
-
-            if(Localidades == "capital"){
-            
-                alert("El costo del envio es de $" + PrecioCapital)
-                alert("Su total es de $" +(ResultadoConPrecioCantidad + PrecioCapital));
-                MetodoPago(ResultadoConPrecioCantidad + PrecioCapital, PrecioCapital);
-                
-                
-            }
-            if (Localidades == "zona norte") {
-
-                alert("El costo del envio es de $" + PrecioZonaNorte);
-                alert("Su total es de $" + (ResultadoConPrecioCantidad + PrecioZonaNorte));
-                MetodoPago(ResultadoConPrecioCantidad + PrecioZonaNorte, PrecioZonaNorte);
-                
-            }
-            if (Localidades == "zona sur") {
-
-                alert("El costo del envio es de $" + PrecioZonaSur)
-                alert("Su total es de $" + (ResultadoConPrecioCantidad + PrecioZonaSur))
-                MetodoPago(ResultadoConPrecioCantidad + PrecioZonaSur, PrecioZonaSur);
-                
-            }
-
+                CostosDeMenoresCantidades();
             }
             if (CantiTortas >= 5){
 
                 alert("su pedido supera los $500 pesos. ")
-                let descuento1 = 90;
-                let descuento2 = 110;
-                let descuento3 = 140;
-                let descuento4 = 200;
-                let caso1 = ResultadoConPrecioCantidad - descuento1;
-                let caso2 = ResultadoConPrecioCantidad - descuento2;
-                let caso3 = ResultadoConPrecioCantidad - descuento3;
-                let caso4 = ResultadoConPrecioCantidad - descuento4;
-
                 switch (ResultadoConPrecioCantidad) {
-                    case 600:  
-                        alert("Se le aplica un descuento de 100 pesos");
-                        alert("Su Descuento ha sido aplicado. Su compra sera de " + caso1) 
-
+                    case 600: 
+                        let descuento = 90
+                        let data =  ResultadoConPrecioCantidad - descuento
+                        alert("Se le aplica un descuento de $ " + descuento + " pesos");
+                        alert("Su Descuento ha sido aplicado. Su compra sera de " + data) 
                         Localidades();
-                        
-
-                    if(Localidades == "capital"){
-                        let Preciototal = caso1 + PrecioCapital; 
-                        alert("El costo del envio es de $" + PrecioCapital)
-                        alert("Su total es de $" + Preciototal)
-                        MetodoPago(Preciototal, PrecioCapital);
-                        
-                    }
-                
-                    if (Localidades == "zona norte") {
-                        let Preciototal = caso1 + PrecioZonaNorte; 
-                        alert("El costo del envio es de $" + PrecioZonaNorte)
-                        alert("Su total es de " + Preciototal )
-                        MetodoPago(Preciototal, PrecioZonaNorte);
-                    }
-                    if (Localidades == "zona sur") {
-                        let Preciototal = caso1 + PrecioZonaSur; 
-                        alert("El costo del envio es de $" + PrecioZonaSur)
-                        alert("Su total es de $" + Preciototal)
-                        MetodoPago(Preciototal, PrecioZonaSur);
-                    }
+                        CostosDeMayoresCantidades(data)
                     break;
                     case 700:  
-                        alert("Se le aplica un descuento de 110 pesos");
-                        alert("Su Descuento ha sido aplicado. Su compra sera de " + caso2) 
 
-                        Localidades();
-                
-                
-                       if(Localidades == "capital"){
-                        let Preciototal = caso2 + PrecioCapital; 
-                        alert("El costo del envio es de $" + PrecioCapital)
-                        alert("Su total es de $" + Preciototal)
-                        MetodoPago(Preciototal, PrecioCapital);
-                    }
-                    if (Localidades == "zona norte"){
-                        let Preciototal = caso2 + PrecioZonaNorte;
-                        alert("El costo del envio es de $" + PrecioZonaNorte)
-                        alert("Su total es de $" + Preciototal )
-                        MetodoPago(Preciototal, PrecioZonaNorte);
-                    }
-                    if (Localidades == "zona sur") {
-                        let Preciototal = caso2 + PrecioZonaSur;
-                        alert("El costo del envio es de $" + PrecioZonaSur)
-                        alert("Su total es de $" + Preciototal)
-                        MetodoPago(Preciototal, PrecioZonaSur);
-                    }
+                        let descuentoValor700 = 110
+                        let dataValor700 =  ResultadoConPrecioCantidad - descuento;
+
+                        alert("Se le aplica un descuento de $ " + descuentoValor700 + "pesos");
+                        alert("Su Descuento ha sido aplicado. Su compra sera de " + caso2) 
+                        Localidades()
+                        CostosDeMayoresCantidades(dataValor700)
                     break;
                     case 800:   
-                        alert("Se le aplica un descuento de 150 pesos");
-                        alert("Su Descuento ha sido aplicado. Su compra sera de " + caso3) 
+                        let descuentoValor800 = 150
+                        let dataValor800 =  ResultadoConPrecioCantidad - descuento;
+
+                        alert("Se le aplica un descuento de $ "+ descuentoValor800 +  "pesos");
+                        alert("Su Descuento ha sido aplicado. Su compra sera de " + dataValor800) 
                         
                         Localidades();
-            
-                       if(Localidades == "capital"){
-                        let Preciototal = caso3 + PrecioCapital; 
-                        alert("El costo del envio es de $" + PrecioCapital)
-                        alert("Su total es de $" + Preciototal)
-                        MetodoPago(Preciototal, PrecioCapital);
-                    }
-                
-                    if (Localidades == "zona norte") {
-                
-                        
-                        let Preciototal = caso3 + PrecioZonaNorte;
-                
-                
-                        alert("El costo del envio es de $" + PrecioZonaNorte)
-                        alert("Su total es de $" + Preciototal )
-                        MetodoPago(Preciototal, PrecioZonaNorte);
-                    }
-                    if (Localidades == "zona sur") {
-                        let Preciototal = caso3 + PrecioZonaSur;
-                        alert("El costo del envio es de $" + PrecioZonaSur)
-                        alert("Su total es de $" + Preciototal)
-                        MetodoPago(Preciototal, PrecioZonaSur);
-                    }
+                        CostosDeMayoresCantidades(dataValor800)
                     break;
                     default:
-                        alert("Su decuento sera de " + descuento4)
-                        alert("Su Descuento ha sido aplicado. Su compra sera de " + caso4) 
-                        
+                        let descuentoValorMayor = 190
+                        let dataValorMayor = ResultadoConPrecioCantidad - descuentoValorMayor;
+                        alert("Su decuento sera de $ " + descuentoValorMayor)
+                        alert("Su Descuento ha sido aplicado. Su compra sera de $ " + dataValorMayor) 
                         Localidades()
-                
-                       if(Localidades == "capital"){
-                
-                        let Preciototal = caso4 + PrecioCapital; 
-                        
-                        alert("El costo del envio es de $" + PrecioCapital)
-                        alert("Su total es de $" + Preciototal);
-                        MetodoPago(Preciototal, PrecioCapital);
-                    }
-                
-                    if (Localidades == "zona norte") {
-                
-                        let Preciototal = caso4 + PrecioZonaNorte;
-                        alert("El costo del envio es de $" + PrecioZonaNorte)
-                        alert("Su total es de $" + Preciototal);
-                        MetodoPago(Preciototal, PrecioZonaNorte);
-                    }
-                    if (Localidades == "zona sur") {
-                        let Preciototal = caso4 + PrecioZonaSur;
-                        alert("El costo del envio es de $" + PrecioZonaSur);
-                        alert("Su total es de $" + Preciototal);
-                        MetodoPago(Preciototal, PrecioZonaSur);
-                    }   
-
+                        CostosDeMayoresCantidades(dataValorMayor)
                     break;   
             }
-        }  
+        } 
     }
-    megadulce();
 
+    MEGADULCE()
